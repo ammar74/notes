@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class NotesItem extends StatelessWidget {
@@ -10,10 +12,13 @@ class NotesItem extends StatelessWidget {
     Colors.greenAccent,
   ] ;*/
 
+
   @override
   Widget build(BuildContext context) {
+   /* var random=Random().nextInt(colors.length);
+    Color itemColor = colors[random];*/
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
         padding: const EdgeInsets.only(top: 16.0, bottom: 16.0,left: 8.0),
         decoration: BoxDecoration(
@@ -23,16 +28,16 @@ class NotesItem extends StatelessWidget {
         child:  Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const ListTile(
+             ListTile(
               isThreeLine: true,
-              title: Text(
+              title: const Text(
                   'Flutter Tip',
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.black,
                 ),
               ),
-              subtitle: Padding(
+              subtitle: const Padding(
                 padding: EdgeInsets.only(top:8.0),
                 child: Text(
                   'This is a subtitle build by Ammar Yasser',
@@ -41,10 +46,12 @@ class NotesItem extends StatelessWidget {
                     color: Colors.black45,
                   ),),
               ),
-              trailing: Icon(
-                Icons.delete,
-                size: 36,
-                color: Colors.black,
+              trailing: IconButton(
+                 onPressed: (){  },
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 36,
+                    color: Colors.black,)
               ),
             ),
             Padding(
