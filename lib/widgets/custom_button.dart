@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({super.key,this.onTap, required this.buttonText});
+  CustomButton({super.key,this.onTap, required this.buttonText, required this.backgroundColor, required this.textColor,});
 
   final String buttonText;
   VoidCallback? onTap;
-  final
+  final Color backgroundColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +19,15 @@ class CustomButton extends StatelessWidget {
         height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.,
+          color: backgroundColor,
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Center(
           child: Text(
             buttonText,
-            style:const TextStyle(
+            style: TextStyle(
               fontSize: 18,
-              color: Colors.white,
+              color: textColor,
             ),
           ),
         ),
