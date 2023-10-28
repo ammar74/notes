@@ -1,23 +1,17 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:notes/models/note_model.dart';
 import 'package:notes/views/edit_note_view.dart';
 
 class NotesItem extends StatelessWidget {
-  const NotesItem({super.key});
+  const NotesItem({super.key, required this.note});
 
-  /*List<Color> colors =[
-    Colors.amberAccent,
-    Colors.blueAccent,
-    Colors.redAccent,
-    Colors.greenAccent,
-  ] ;*/
-
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
-   /* var random=Random().nextInt(colors.length);
-    Color itemColor = colors[random];*/
+
     return GestureDetector(
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context){
@@ -30,7 +24,7 @@ class NotesItem extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.only(top: 16.0, bottom: 16.0,left: 8.0),
           decoration: BoxDecoration(
-            color: Colors.amberAccent,
+            color: Color(note.color),
             borderRadius: BorderRadius.circular(16.0),
           ),
           child:  Column(
@@ -38,24 +32,26 @@ class NotesItem extends StatelessWidget {
             children: [
                ListTile(
                 isThreeLine: true,
-                title: const Text(
-                    'Flutter Tip',
-                  style: TextStyle(
+                title:  Text(
+                    note.title,
+                  style:const TextStyle(
                     fontSize: 26,
                     color: Colors.black,
                   ),
                 ),
-                subtitle: const Padding(
-                  padding: EdgeInsets.only(top:8.0),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top:8.0),
                   child: Text(
-                    'This is a subtitle build by Ammar Yasser',
-                    style: TextStyle(
+                    note.subTitle,
+                    style: const TextStyle(
                       fontSize: 18,
                       color: Colors.black45,
                     ),),
                 ),
                 trailing: IconButton(
-                   onPressed: (){  },
+                   onPressed: (){
+                     note.delete();
+                   },
                     icon: const Icon(
                       Icons.delete,
                       size: 36,
@@ -64,7 +60,9 @@ class NotesItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 16.0, top: 8.0),
-                child: Text('${DateTime.now()}', style: const TextStyle(
+                child: Text(
+                  note.date,
+                  style: const TextStyle(
                   color: Colors.black45
                 ),),
               )
