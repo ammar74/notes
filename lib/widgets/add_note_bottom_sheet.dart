@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes/cubits/add_note_cubit.dart';
 import 'package:notes/cubits/notes_cubit.dart';
 import 'package:notes/widgets/add_note_form.dart';
+import 'package:toast/toast.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
     return BlocProvider(
       create: (context) => AddNoteCubit(),
       child: BlocConsumer<AddNoteCubit, AddNoteState>(
@@ -20,6 +21,10 @@ class AddNoteBottomSheet extends StatelessWidget {
           if (state is AddNoteSuccess) {
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
             Navigator.pop(context);
+            Toast.show(
+                "Note Added Successfully",
+                duration: Toast.lengthShort,
+                gravity:  Toast.bottom);
           }
         },
         builder: (context, state) {
